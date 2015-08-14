@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+<class name="com.snap.beans.ShopBean" table="shop">
+
+	<id name="shop_id"  type="int">
+		<generator class="assigned" />
+	</id>
+	<property name="shop_name"  not-null="true"/>
+	<property name="location"   not-null="true" />
+	<property name="category"  not-null="true"/>
+	<property name="sector" type="int"  not-null="true" />
+	<property name="mobile"  not-null="true"/>
+	</class>
+   
+</hibernate-mapping>
