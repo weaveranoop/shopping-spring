@@ -1,6 +1,5 @@
 package com.snap.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +8,6 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -72,5 +70,16 @@ private static AbstractApplicationContext fac;
 		return "ShopResult";
 	}
 	
+	
+	@RequestMapping(value="addshop.htm",method=RequestMethod.POST)
+	public String addShop(Model model){
+		
+		List<ShopBean> shoplist=null;
+		//shoplist=getAllShops();
+		
+		model.addAttribute("shops",shoplist);
+		
+		return "ShopResult";
+	}
 }
 

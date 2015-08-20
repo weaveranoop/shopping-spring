@@ -36,20 +36,20 @@
     		  // var res3=passpatt.test(pass);
     		   var res4=contactpatt.test(contact);
     		   if(!res1){
-    			      alert("name must be only alphabets");
+    			      alert("Name must be only alphabets");
     			      return false;	   
     			   
     			   }
     		   
     		    if(!res2)
     			   {
-    			      alert("enter a valid email id");	   
+    			      alert("Enter a valid email id");	   
     			      return false;
     			   }
     		    
     		    if (pass.length < 8)
     		    	{
-    		    	  alert("password length should be atleast 8 ");
+    		    	  alert("Password length should be atleast 8 ");
     		    	  return false;
     		    	}
     		    
@@ -59,19 +59,19 @@
     		    	var hasNonalphas = /\W/.test(pass);
     		    	if (hasUpperCase + hasLowerCase + hasNumbers + hasNonalphas < 4)
     		    		{
-    		    	       alert("bad password:must have at least one uppercase,one lowercase,one numeric and one non alpha numeric");
+    		    	       alert("Bad password:must have at least one uppercase,one lowercase,one numeric and one non alpha numeric");
     		    	       return false;
     		    		} 
     		    
     		    if(address=="")
     		    {
-  			      alert("address should not be empty");	   
+  			      alert("Address should not be empty");	   
   			      return false;
   			   }
     		    
     		    if(!res4)
     			   {
-    			      alert("contact number should be of 10 digits");	   
+    			      alert("Contact Number should be of 10 digits");	   
     			      return false;
     			   }
     		   
@@ -95,14 +95,14 @@
     		    
     		    if(!res1)
     			   {
-    			      alert("invalid email id");	
+    			      alert("Invalid email id");	
     			      return false;
     			   
     			   }
     		   
     		    if(pass=="")
     		    	{
-    		    	   alert("enter password");
+    		    	   alert("Enter password");
     		    	   return false;
     		    	
     		    	}
@@ -115,8 +115,7 @@
 
 <body>
 
-<c:if test="${sessionScope.username ne null }">
-<%@include file="header1.jsp" %>
+<%@include file="header.jsp" %>
 
 <!-- <section id="form">form -->
 		<div class="container">
@@ -124,13 +123,13 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="login.htm" onsubmit="return lvalidate();" method="get">
+						<form action="login.htm" onsubmit="return lvalidate();" method="post">
 							<input type="text" placeholder="Email" name="lemail" id="lemail">
 							<input type="password" placeholder="Password" name="lpwd" id="lpwd" >
-							<span>
+							<!-- <span>
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
-							</span>
+							</span> -->
 							<button type="submit" class="btn btn-default">Login</button>
 						</form>
 					</div><!--/login form-->
@@ -156,15 +155,5 @@
 <!-- 	</section> -->
 <%--  <%@include file="footer.jsp" %>	  --%>
 
-</c:if>
-
-<c:if test="${sessionScope.username eq null }">
-	<%@include file="header.jsp" %>	
-	<div align="center">
-		<h3 style="color: red; ">You are not authenticated user.</h3>
-		<h4 >Please Login to view the contents of the Page.</h4>
-		<a href="SignupPage.jsp">Login</a>
-	</div>
-</c:if>
 </body>
 </html>

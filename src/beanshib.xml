@@ -53,7 +53,7 @@
        <property name="driverClassName" value="${driver}"/>
        <property name="url" value="${url}"/>
        <property name="username" value="${uname}"/>
-       <property name="password" value=""/>
+       <property name="password" value="${password}"/>
    </bean> 
    
 </beans>

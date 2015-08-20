@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.snap.beans.UserBean" table="user1" dynamic-insert="true" dynamic-update="true">
+	<class name="com.snap.beans.UserBean" table="user" dynamic-insert="true" dynamic-update="true">
 		
 		<id name="email" column="email">
 			<generator class="assigned"/>

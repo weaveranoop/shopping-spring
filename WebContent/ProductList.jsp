@@ -16,7 +16,32 @@
     <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
+	
+	<script type="text/javascript">
+		function addtocart(pid,pname,price,shopid){
+			//alert("djsd");
+		if (window.XMLHttpRequest) {
+			 //code for IE7+, Firefox, Chrome, Opera, and Safari
+			req=new XMLHttpRequest();
+			 }
+		else{
+			// code for IE6, IE5
+			req=new ActiveXObject("Microsoft.XMLHTTP");
+		}
 
+		
+		req.open("GET","new.jsp?price="+price+"&pname="+pname+"&pid="+pid+"&shopid="+shopid,true);  
+		                                
+		req.send();
+		req.onreadystatechange=function(){
+			
+			if(req.readyState==4 && req.status==200){
+			//document.getElementById("span1").innerHTML=req.responseText;
+			}
+		}	
+		}
+</script>
+	
 </head>
 
 
@@ -45,7 +70,8 @@
 											<div class="overlay-content">
 												<h2>Rs. ${p.price }</h2>
 											<p>${p.product_name}</p>
-												
+											<button type="button"  onclick="addtocart( ${p.product_id},'${p.product_name}',${p.price}, ${p.shop_id})" class="btn btn-default add-to-cart">Add To Cart</button>
+<%-- 											<button class="btn btn-default add-to-cart" onclick="addtocart( ${p.product_id},'${p.product_name}',${p.price}, ${p.shop_id})"><i class="fa fa-shopping-cart">Add to Cart</i></button> --%>
 											</div>
 										</div>
 								</div>

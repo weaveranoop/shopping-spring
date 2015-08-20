@@ -20,25 +20,23 @@
 
 <body>
 
-<%@include file="header1.jsp" %>	
 
 <c:if test="${sessionScope.username ne null }">
+<%@include file="header1.jsp" %>
 
 <br/><br/>
 	<section>
 	    
-		<div class="col-sm-6">
+		<div class="col-sm-6" align="center">
 		        
-					<h1><span>R</span>-SHOPPER</h1>
-					<h2>Browse by Category</h2>
+					<h1>Browse by Category</h1>
 					<form action="CategoryPage.jsp">
 						<button type="text" class="btn btn-default get">Go now</button>
 					</form>
 		</div>
 		
-		<div class="col-sm-6">
-					<h1><span>R</span>-SHOPPER</h1>
-					<h2>Browse by Area</h2>
+		<div class="col-sm-6" align="center">
+					<h1>Browse by Area</h1>
 					<form action="AreaPage.jsp">
 						<button type="text" class="btn btn-default get">Go now</button>
 					</form>
@@ -46,13 +44,14 @@
 	</section>
 </c:if>
 	
-	<c:if test="${sessionScope.username eq null }">
+<c:if test="${sessionScope.username eq null }">
+	<%@include file="header.jsp" %>	
 	<div align="center">
 		<h3 style="color: red; ">You are not authenticated user.</h3>
 		<h4 >Please Login to view the contents of the Page.</h4>
 		<a href="SignupPage.jsp">Login</a>
 	</div>
-	</c:if>
+</c:if>
 	
 </body>
 </html>

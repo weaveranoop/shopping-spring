@@ -19,7 +19,8 @@ public interface DAO {
 	public List<ShopBean> findNearbySectorShops(String category,int sector);
 	public List<CatalogTableBean> listItems(int shop_id);
 	public List<ShopBean> getAllShops(String item);
-	
+	public void updateProfile(String email, String password, String phoneno,
+			String address);
 	
 	
 }

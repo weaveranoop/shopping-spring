@@ -41,14 +41,13 @@ public class DAOImpl2 implements DAO{
 
 	public UserBean getUser(String email) {
 		// TODO Auto-generated method stub
-		List<String> list = htemp.find("select name from UserBean");
-		System.out.println(list.size());
+		//List<String> list = htemp.find("select name from UserBean");
+		//System.out.println(list.size());
 		UserBean user = htemp.get(UserBean.class, email);
-		System.out.println(user);
+		//System.out.println(user);
 		return user;
 	}
 
-	@Override
 	public List<ShopBean> getShopByCategory(String category) {
 		String query = "from ShopBean " + "where category = ?";
 		Object params[] = { category };
@@ -56,7 +55,6 @@ public class DAOImpl2 implements DAO{
 		return list;
 	}
 	
-	@Override
 	public List<ShopBean> getShopByCategoryArea(String category, int sector) {
 		String query = "from ShopBean " + "where category = ? and sector =?";
 		Object params[] = { category, sector };
@@ -67,7 +65,6 @@ public class DAOImpl2 implements DAO{
 		return list;
 	}
 
-	@Override
 	public List<ShopBean> getAllShops() {
 		String hql="from ShopBean";
 	
@@ -124,7 +121,6 @@ public class DAOImpl2 implements DAO{
 
 	}
 
-	@Override
 	public List<CatalogTableBean> listItems(int shop_id) {
 		// TODO Auto-generated method stub
 		List<CatalogTableBean> list = new ArrayList<CatalogTableBean>();
@@ -158,7 +154,23 @@ public class DAOImpl2 implements DAO{
 
 	}
 
-	
-	
+
+
+	public void updateProfile(String email, String password, String phoneno,
+			String address) {
+		// TODO Auto-generated method stub
+		List<UserBean> list=new ArrayList<UserBean>();
+		//System.out.println(phoneno);
+		String query = "from UserBean where email = ?";
+		Object params[] = {email};
+		list= htemp.find(query,params);
+		if(list.get(0)!=null){
+			UserBean ub=list.get(0);
+			ub.setAddress(address);
+			ub.setPassword(password);
+			ub.setMobile(phoneno);
+			htemp.update(ub);
+		}
+	}
 
 }

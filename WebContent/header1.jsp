@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="images/home/logo.png" alt=""></a>
+							<a href="Page2.jsp"><img src="images/home/logo.png" alt=""></a>
 						</div>
 						
 					</div>
@@ -18,6 +18,8 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href=""><i class="fa fa-user"></i> ${sessionScope.username }</a></li>
+								<li><a href="updateProfile.jsp"><i class="fa fa-user"></i>Update Profile</a></li>
+								<li><a href="cart.jsp"><i class="fa fa-user"></i>Cart</a></li>
 								<li><a href="logout.htm" class="active"><i class="fa fa-lock"></i> Logout</a></li>
 							</ul>
 						</div>
@@ -40,7 +42,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="SignupPage.jsp">Home</a></li>
+								<li><a href="Page2.jsp">Home</a></li>
 			
 								<li><a href="contact.jsp">Contact</a></li>
 							</ul>

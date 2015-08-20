@@ -19,6 +19,59 @@
 	<link href="css/responsive.css" rel="stylesheet">
 
 </head>
+<script type="text/javascript">
+function getSuggests(val)
+{
+	
+	var sec=document.getElementById("sector").value;
+	if(sec=="")
+		{
+		   alert("enter sector number first");
+		
+		}
+	
+	var req=null;
+	   if(window.XMLHttpRequest)
+		   {
+		     req=new XMLHttpRequest();	//Firefox,chrome,safari ,IE7  
+		   
+		   }
+	   
+	   else
+		   {
+		   
+		     req=ActiveXObject("Microsoft.XMLHTTP");//less than IE7..i.e.IE6,IE4,IE5
+		   
+		   
+		   }
+	   
+	     req.open("GET","AutoServer.jsp?cname="+val,true);
+	     req.send();
+	     
+	     req.onreadystatechange=function()
+	     {
+	    	 if(req.readyState==4 && req.status==200)
+	    		 {
+	    		    var resp=req.responseText;
+	    		 
+	    		    var arr=resp.split("-");
+	    		    var res="";
+	    		    for(var i=0;i<arr.length;++i)
+    			    {
+    			      
+    			    	   
+    			       res+="<a href=\"searchByCategoryArea.htm?cat="+arr[i]+"&sector="+sec+"\">"+arr[i]+"</a><br/>";
+    			       
+    			    }
+    		         
+    		        document.getElementById("div1").innerHTML=res;	 
+	    		  }
+	    		 
+	    	 
+	    	 	
+        }
+}
+</script>
 
 
 <body>
@@ -33,11 +86,12 @@
 			<h2>Enter an area</h2>
 			
 				<div class="login-form"><!--login form-->
-						<form action="searchByCategoryArea.htm" style="width: 200px;">
-							<input name="sector" type="text" placeholder="Sector Number"><br/><br/>
-							<input name="cat" type="text" placeholder="Category">
-							<button type="submit" class="btn btn-default" >Done</button>
-						</form>
+						
+							<input name="sector" type="text" placeholder="Sector Number" id="sector"><br/><br/>
+							<input name="cat" type="text" placeholder="Category" onkeyup="getSuggests(this.value,document.getElementById('sector'))">
+							<div id="div1" style="height:150px;width:150px">
+</div>
+							
 					</div>
 			</div>
 					

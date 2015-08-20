@@ -1,9 +1,13 @@
-<html lang="en"><head>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Error | R-Shopping</title>
+    <title>Login | Rangeela-Shopping</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -11,20 +15,18 @@
     <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
-	
-</head><!--/head-->
+</head>
 
 <body>
 
-	<div class="container text-center">
-		<div class="logo-404">
-			<a href="index.html"><img src="images/home/logo.png" alt=""></a>
-		</div>
-		<div class="content-404">
-			<img width="300px" height="300px" src="images/404/404.png" class="img-responsive" alt="">
-			<h1><b>OPPS!</b> How you did this?</h1>
-			<h2><a href="SignupPage.jsp">Get me a way out</a></h2>
-		</div>
-	</div>
 
+<%@include file="header1.jsp" %>
+
+<div align="center">
+	<h3>Your changes have been saved Sucessfully.</h3>
+</div>
+
+
+	
 </body>
+</html>
