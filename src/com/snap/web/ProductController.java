@@ -3,7 +3,9 @@ package com.snap.web;
 import java.util.List;
 
 
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.snap.beans.CatalogTableBean;
 import com.snap.beans.ShopBean;
 import com.snap.dao.DAO;
-
 import com.snap.dao.DAOImpl2;
 
 //this is called controller , it is controlled by dispatcher servlet
@@ -55,5 +56,18 @@ private static AbstractApplicationContext fac;
 			return "ShopListing.jsp";
 
 		}
+	
+	@RequestMapping(value="addprod.htm",method=RequestMethod.POST)
+	public String AddProduct(HttpServletRequest req,Model model){
+		
+		String sname = req.getParameter("shopname");
+		String pname = req.getParameter("pname");
+		Double pprice = Double.parseDouble(req.getParameter("pprice"));
+		String pdetails = req.getParameter("pdetails");
+		int sid = Integer.parseInt(req.getParameter("sid"));
+		DAO dao = fac.getBean("mydao", DAOImpl2.class);
+		dao.addProduct(sname,pname,pprice,pdetails,sid);
+		return "adminSuccess.jsp";
+	}
 		
 }

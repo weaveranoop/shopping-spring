@@ -1,6 +1,9 @@
 package com.snap.web;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.snap.beans.CatalogTableBean;
+import com.snap.beans.ShopBean;
 import com.snap.beans.UserBean;
 import com.snap.dao.DAO;
 import com.snap.dao.DAOImpl2;
@@ -46,9 +50,14 @@ private static AbstractApplicationContext fac;
 				if(pwd.equals(password)){
 					HttpSession sess = request.getSession();
 					sess.setAttribute("username", user.getName());
-					sess.setAttribute("useremail", user.getEmail());
 					Set<CatalogTableBean> cart=new HashSet<CatalogTableBean>();
 					sess.setAttribute("cart", cart);
+					Map<Integer, Integer>quantity=new HashMap<Integer, Integer>();
+					sess.setAttribute("quantity", quantity);
+					sess.setAttribute("useremail", email);
+					double amount=0;
+					sess.setAttribute("amount", amount);
+					
 					view = "Page2.jsp";
 				}
 				else{
@@ -96,6 +105,7 @@ private static AbstractApplicationContext fac;
 		DAO dao = fac.getBean("mydao", DAOImpl2.class);
 		HttpSession sess = request.getSession();
 		String email = (String) sess.getAttribute("useremail");
+		System.out.println(email);
 		dao.updateProfile(email,password,phoneno,address);
 		String view = "UpdateSucess.jsp";
 		return view;
@@ -117,6 +127,27 @@ private static AbstractApplicationContext fac;
 			view = "admin.jsp";
 		}
 		return view;
+	}
+	
+	
+	@RequestMapping(value="getAllSectors.htm",method=RequestMethod.POST)
+	public String getSector(HttpServletRequest request,Model model){
+	
+		String view=null;
+		view="AreaPage.jsp";
+	    DAO dao = fac.getBean("mydao", DAOImpl2.class);
+	    List<ShopBean> lst=dao.getAllShops();
+		Set<Integer> slst=new HashSet<Integer>();
+		for(ShopBean s:lst)
+		{
+			slst.add(s.getSector());
+			
+		}
+		
+		model.addAttribute("slist",slst);		
+	    
+	
+	return view;
 	}
 }
 	

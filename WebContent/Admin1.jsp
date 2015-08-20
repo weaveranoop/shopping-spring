@@ -29,9 +29,9 @@
 					<div class="login-form"><!--login form-->
 						<h2>Add a new Shop</h2>
 						<form action="addshop.htm" method="post">
-							<input type="text" placeholder="Shop Name" >
-							<input type="text" placeholder="Location">
-							<input type="text" placeholder="Mobile Number">
+							<input type="text" placeholder="Shop Name" name="sname">
+							<input type="text" placeholder="Location"  name="slocation">
+							<input type="text" placeholder="Mobile Number" name="smobile">
 							
 							 <select name="Category">
 							 		<option value="" disabled selected>Select a Category</option>
@@ -43,7 +43,7 @@
                 					<option value="departmental">Departmental</option>
         					</select>
 							<div style="height: 10px"></div>
-							<input type="text" placeholder="Sector Number">
+							<input type="text" placeholder="Sector Number" name="ssector">
 							<button type="submit" class="btn btn-default">Add Shop</button>
 						</form>
 					</div><!--/login form-->

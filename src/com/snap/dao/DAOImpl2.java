@@ -173,4 +173,31 @@ public class DAOImpl2 implements DAO{
 		}
 	}
 
+
+
+	public void addShop(String sname, String slocation, String smobile,
+			String category, int ssector) {
+		// TODO Auto-generated method stub
+		ShopBean sb = new ShopBean();
+		sb.setCategory(category);
+		sb.setLocation(slocation);
+		sb.setMobile(smobile);
+		sb.setShop_name(sname);
+		sb.setSector(ssector);
+		htemp.save(sb);
+	}
+
+
+
+	public void addProduct(String sname, String pname, Double pprice,
+			String pdetails,int sid) {
+		// TODO Auto-generated method stub
+		CatalogTableBean catalog = new CatalogTableBean();
+		catalog.setProduct_name(pname);
+		catalog.setDetails(pdetails);
+		catalog.setPrice(pprice);
+		catalog.setShop_id(sid);
+		htemp.save(catalog);
+	}
+
 }

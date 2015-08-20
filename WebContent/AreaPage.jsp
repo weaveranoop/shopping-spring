@@ -20,29 +20,31 @@
 
 </head>
 <script type="text/javascript">
+
+var sec = "22";
+
+function selectionChanged(val1){
+	
+	//alert(val1);
+	sec = val1;
+}
+
+
 function getSuggests(val)
 {
 	
-	var sec=document.getElementById("sector").value;
-	if(sec=="")
-		{
-		   alert("enter sector number first");
-		
-		}
 	
 	var req=null;
-	   if(window.XMLHttpRequest)
+    
+	if(window.XMLHttpRequest)
 		   {
 		     req=new XMLHttpRequest();	//Firefox,chrome,safari ,IE7  
-		   
 		   }
 	   
 	   else
 		   {
 		   
 		     req=ActiveXObject("Microsoft.XMLHTTP");//less than IE7..i.e.IE6,IE4,IE5
-		   
-		   
 		   }
 	   
 	     req.open("GET","AutoServer.jsp?cname="+val,true);
@@ -53,15 +55,13 @@ function getSuggests(val)
 	    	 if(req.readyState==4 && req.status==200)
 	    		 {
 	    		    var resp=req.responseText;
-	    		 
+	    		    
 	    		    var arr=resp.split("-");
+	    		    
 	    		    var res="";
 	    		    for(var i=0;i<arr.length;++i)
-    			    {
-    			      
-    			    	   
-    			       res+="<a href=\"searchByCategoryArea.htm?cat="+arr[i]+"&sector="+sec+"\">"+arr[i]+"</a><br/>";
-    			       
+    			    {   			      
+    			       res+="<a href='searchByCategoryArea.htm?cat="+arr[i]+"&sector="+sec+"'>"+arr[i]+"</a><br/>";    			       
     			    }
     		         
     		        document.getElementById("div1").innerHTML=res;	 
@@ -80,23 +80,45 @@ function getSuggests(val)
 <%@include file="header1.jsp" %>
 
 
-<section>
-							
-		<div class="brands_products" align="center">
-			<h2>Enter an area</h2>
-			
-				<div class="login-form"><!--login form-->
 						
-							<input name="sector" type="text" placeholder="Sector Number" id="sector"><br/><br/>
-							<input name="cat" type="text" placeholder="Category" onkeyup="getSuggests(this.value,document.getElementById('sector'))">
-							<div id="div1" style="height:150px;width:150px">
-</div>
+		<section><!--form-->
+		<div class="container" >
+			<div class="row" >
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2 align="center">Enter the area</h2>
+						<form action="#">
 							
-					</div>
+							<select id="sect" onchange="selectionChanged(this.options[this.selectedIndex].text);">
+                            	
+                            	<option value="" disabled selected >Select Sector</option>
+    								<c:forEach items="${requestScope.slist}" var="s" varStatus="myIndex">
+    								    <c:choose>
+    										<c:when test="${ myIndex.index <= 0}">
+       												<option value="${s}" selected>${s}</option>
+    										</c:when>
+    										
+    										<c:otherwise>
+        											<option value="${s}">${s}</option>
+    										</c:otherwise>
+										</c:choose>
+    								    
+    								    
+    								</c:forEach>
+                             </select>
+                             
+        					<div style="height: 10px"></div>
+        					<input name="cat" type="text" placeholder="Category" onkeyup="getSuggests(this.value)">
+        					<div id="div1" style="height:150px;width:150px">
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+				</div>
+				
 			</div>
-					
-</section>
-
+		</div>
+	</section>
 
 </c:if>
 

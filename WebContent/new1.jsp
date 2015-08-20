@@ -8,28 +8,25 @@
 
 <%
 		int pid =Integer.parseInt(request.getParameter("pid"));
-		String pname=request.getParameter("pname");
 		double price =Double.parseDouble(request.getParameter("price"));
-		int shopid =Integer.parseInt(request.getParameter("shopid")); 
+		 
 		HttpSession sess = request.getSession();
 		Set<CatalogTableBean> cart=(Set<CatalogTableBean>)sess.getAttribute("cart");
-		CatalogTableBean obj=new CatalogTableBean();
-		System.out.println(pname+" "+pid);
-		obj.setPrice(price);
-		obj.setProduct_id(pid);
-		obj.setShop_id(shopid);
-		obj.setProduct_name(pname);
-		cart.add(obj);
-		sess.setAttribute("cart",cart);
 		Map<Integer,Integer> quantity=(Map<Integer,Integer>)sess.getAttribute("quantity");
-		if(quantity.get(pid)==null){
-		quantity.put(pid, 1);
-		}else{
-			int x=(Integer)quantity.get(pid);
-			quantity.put(pid, x+1);
-		}
+		
+		int newQuantity=Integer.parseInt(request.getParameter("qty"));
+		int oldQuantity=quantity.get(pid);
+		
+		quantity.put(pid, newQuantity);
+		
 		sess.setAttribute("quantity", quantity);
+		
 		double amount=(Double)sess.getAttribute("amount");
-		amount+=price;
+		amount+=(newQuantity-oldQuantity)*price;
+		
 		sess.setAttribute("amount", amount);
+		
+		System.out.print(amount);
+		out.print(amount);
+
 %>

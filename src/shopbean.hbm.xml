@@ -8,7 +8,7 @@
 <class name="com.snap.beans.ShopBean" table="shop">
 
 	<id name="shop_id"  type="int">
-		<generator class="assigned" />
+		<generator class="increment" />
 	</id>
 	<property name="shop_name"  not-null="true"/>
 	<property name="location"   not-null="true" />

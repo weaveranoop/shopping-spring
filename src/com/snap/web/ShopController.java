@@ -72,14 +72,16 @@ private static AbstractApplicationContext fac;
 	
 	
 	@RequestMapping(value="addshop.htm",method=RequestMethod.POST)
-	public String addShop(Model model){
+	public String AddShop(HttpServletRequest req,Model model){
 		
-		List<ShopBean> shoplist=null;
-		//shoplist=getAllShops();
-		
-		model.addAttribute("shops",shoplist);
-		
-		return "ShopResult";
+		String sname = req.getParameter("sname");
+		String slocation = req.getParameter("slocation");
+		String smobile = req.getParameter("smobile");
+		String category = req.getParameter("Category");
+		int ssector = Integer.parseInt(req.getParameter("ssector"));
+		DAO dao = fac.getBean("mydao", DAOImpl2.class);
+		dao.addShop(sname,slocation,smobile,category,ssector);
+		return "adminSuccess.jsp";
 	}
 }
 

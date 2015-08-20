@@ -28,7 +28,7 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Add a new Product</h2>
-						<form action="#">
+						<form action="addprod.htm" method="post">
 							
 							<select name="shopname">
 							 		<option value="" disabled selected>Select a Shop Name</option>
@@ -40,10 +40,10 @@
                 					<option value="departmental">Departmental</option>
         					</select>
         					<div style="height: 10px"></div>
-        					
-							<input type="text" placeholder="Product Name">
-							<input type="text" placeholder="Price">
-							<input type="text" placeholder="Details">
+        					<input type="text" placeholder="Shop ID" name="sid">
+							<input type="text" placeholder="Product Name" name="pname">
+							<input type="text" placeholder="Price" name="pprice">
+							<input type="text" placeholder="Details" name="pdetails">
 							 
 							<button type="submit" class="btn btn-default">Add Product</button>
 						</form>

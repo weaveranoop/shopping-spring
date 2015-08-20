@@ -20,6 +20,7 @@
 	<script type="text/javascript">
 		function addtocart(pid,pname,price,shopid){
 			//alert("djsd");
+			alert("Product added to cart Suceesfully");
 		if (window.XMLHttpRequest) {
 			 //code for IE7+, Firefox, Chrome, Opera, and Safari
 			req=new XMLHttpRequest();

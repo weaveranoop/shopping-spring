@@ -17,7 +17,7 @@
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="admin.jsp" class="active"><i class="fa fa-lock"></i> Admin Panel</a></li>
 
 								<li><a href="SignupPage.jsp" class="active"><i class="fa fa-lock"></i> Login</a></li>
 							</ul>

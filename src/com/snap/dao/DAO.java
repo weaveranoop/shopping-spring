@@ -21,6 +21,9 @@ public interface DAO {
 	public List<ShopBean> getAllShops(String item);
 	public void updateProfile(String email, String password, String phoneno,
 			String address);
-	
+	public void addShop(String sname, String slocation, String smobile,
+			String category, int ssector);
+	public void addProduct(String sname, String pname, Double pprice,
+			String pdetails,int sid);
 	
 }

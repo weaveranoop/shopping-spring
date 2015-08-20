@@ -6,7 +6,7 @@
 <hibernate-mapping>
 	<class name="com.snap.beans.CatalogTableBean" table="catalogtable" dynamic-insert="true" dynamic-update="true">
 		<id name="product_id" column="product_id"  type="int">
-			<generator class="assigned"/>
+			<generator class="increment"/>
 		</id>
 		<property name="product_name" column="product_name" not-null="true" length="50"/>
 		<property name="shop_id" column="shop_id" not-null="true" type="int"/>

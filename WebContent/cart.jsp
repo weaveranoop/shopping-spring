@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -19,19 +20,60 @@
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
 	
-	<script type="text/javascript">
+	<script>
+	
+	var total=0;
+	
 	function myfunction(price,pid) {
-		
+		total=0;
 	//	alert(price+" "+pid);
 		
 		qty=document.getElementById(pid).value;
-		total=qty*price;
+		tot=qty*price;
 		//alert(total);
-		document.getElementById("total"+pid).innerHTML=total;
-		
-		
+		document.getElementById("total"+pid).innerHTML=tot;
+		total=total+tot;
+		document.getElementById("total").innerHTML=total;
+		document.getElementById("amount").innerHTML=total;
+		updateCart(pid,price);
 	}
 	
+	
+	function updateCart(price,pid){
+
+	var qty=document.getElementById(pid).value;
+		tot=qty*price;
+		//alert(total);
+		document.getElementById("total"+pid).innerHTML=tot;
+		if (window.XMLHttpRequest) {
+			 //code for IE7+, Firefox, Chrome, Opera, and Safari
+			req=new XMLHttpRequest();
+			 }
+		else{
+			// code for IE6, IE5
+			req=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		req.open("GET","new1.jsp?qty="+qty+"&pid="+pid+"&price="+price,true);  
+		                         
+		
+		req.send();
+		req.onreadystatechange=function(){
+			
+			if(req.readyState==4 && req.status==200){
+			var newAmount=req.responseText;
+			
+			document.getElementById("amount").innnerHTML=newAmount;
+			document.getElementById("total").innnerHTML=newAmount;
+			}
+			
+			}
+
+		}
+	var value = function(a) {
+		var str = " "+a;
+		return $sessionScope.str;
+	}
 	</script>
 
 </head>
@@ -66,15 +108,15 @@
 								<%-- <p>${product.product_id}</p> --%>
 							</td>
 							<td class="cart_price">
-								<p>&#8377; ${product.price}</p>
+								<p>${product.price}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<input class="cart_quantity_input" type="text" name="quantity" value=1  size="2" id="${product.product_id}" onKeyUp="myfunction(${product.price},${product.product_id})">
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" size="2" id="${product.product_id}" onKeyUp="updateCart(${product.price},${product.product_id})">
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price" id="total${product.product_id}"> ${product.price}</p>
+								<p class="cart_total_price" id="total${product.product_id}">${product.price}</p>
 							</td>
 							<!-- <td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -98,13 +140,13 @@
 				<div class="col-sm-6" >
 					<div class="total_area" >
 						<ul>
-							<li>Cart Sub Total <span>&#8377; 0</span></li>
-							<li>Eco Tax <span>&#8377; 2</span></li>
+							<li>Amount <span  id="amount">${sessionScope.amount}</span></li>
+							<li id="tax">Tax <span>0</span></li>
 							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>&#8377; 0</span></li>
+							<li >Total <span id="total">${sessionScope.amount}</span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Get Total</a>
+							<a class="btn btn-default check_out" href="">Check Out</a>
 					</div>
 				</div>
 			</div>
